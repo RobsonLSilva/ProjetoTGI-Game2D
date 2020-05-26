@@ -20,6 +20,7 @@ public class Game extends JFrame implements KeyListener {
 	BufferedImage backBuffer;
 	int janelaW = 1028;
 	int janelaH = 728;
+	int aux = 0;
 
 	// AQUI DECLARAMOS O NOSSO MENU COM:
 	// 4 itens, coordenadas x e y = 100, a ativo = true
@@ -27,12 +28,6 @@ public class Game extends JFrame implements KeyListener {
 
 	Menu menuPrincipal = new Menu(4, 100, 100, true);
 	ImageIcon fundo = new ImageIcon("src/res/menu01.png");
-	
-	
-	
-	public Game() {
-		run();
-	}
 
 	@SuppressWarnings("rawtypes")
 	public void cenarios() {
@@ -40,39 +35,42 @@ public class Game extends JFrame implements KeyListener {
 		Graphics bbg = backBuffer.getGraphics();
 		bbg.setFont(new Font("Arial", Font.BOLD, 20));
 
-		if (menuPrincipal.cenario == 0) {
-			
-			dispose();
-			
-			JFrame frame2 = new JFrame();
-			
-			frame2.add(new Fase());
-			frame2.setTitle("Viking");
-			frame2.setDefaultCloseOperation(EXIT_ON_CLOSE);
-			frame2.setSize(janelaW, janelaH);
-			frame2.setLocationRelativeTo(null);
-			frame2.setResizable(false);
-			frame2.setVisible(true);
-			
-			
-		}
-		
-		if (menuPrincipal.cenario == 1) {
-			bbg.setColor(new Color(100, 255, 100));
-			bbg.fillRect(0, 0, janelaW, janelaH);
-			bbg.setColor(Color.BLACK);
-			bbg.drawString("Você escolheu Opções", 100, 200);
-		}
-		
-		if (menuPrincipal.cenario == 2) {
-			bbg.setColor(new Color(100, 100, 255));
-			bbg.fillRect(0, 0, janelaW, janelaH);
-			bbg.setColor(Color.BLACK);
-			bbg.drawString("Você escolheu Ajuda", 100, 200);
-		}
-		
-		if (menuPrincipal.cenario == 3) {
-			System.exit(0);
+		if (aux == 0) {
+
+			if (menuPrincipal.cenario == 0) {
+
+				dispose();
+
+				JFrame frame2 = new JFrame();
+
+				frame2.add(new Fase());
+				frame2.setTitle("Viking");
+				frame2.setDefaultCloseOperation(EXIT_ON_CLOSE);
+				frame2.setSize(janelaW, janelaH);
+				frame2.setLocationRelativeTo(null);
+				frame2.setResizable(false);
+				frame2.setVisible(true);
+				aux = 1;
+
+			}
+
+			if (menuPrincipal.cenario == 1) {
+				bbg.setColor(new Color(100, 255, 100));
+				bbg.fillRect(0, 0, janelaW, janelaH);
+				bbg.setColor(Color.BLACK);
+				bbg.drawString("Você escolheu Opções", 100, 200);
+			}
+
+			if (menuPrincipal.cenario == 2) {
+				bbg.setColor(new Color(100, 100, 255));
+				bbg.fillRect(0, 0, janelaW, janelaH);
+				bbg.setColor(Color.BLACK);
+				bbg.drawString("Você escolheu Ajuda", 100, 200);
+			}
+
+			if (menuPrincipal.cenario == 3) {
+				System.exit(0);
+			}
 		}
 	}
 
@@ -124,7 +122,7 @@ public class Game extends JFrame implements KeyListener {
 		inicializar();
 		while (true) {
 			atualizar();
-			desenharGraficos();	
+			desenharGraficos();
 		}
 	}
 

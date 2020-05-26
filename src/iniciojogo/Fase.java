@@ -54,8 +54,8 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 		inimigo = new ArrayList<Inimigo>();
 
 		for (int i = 0; i < coordenadas.length; i++) {
-			int x = (int) (Math.random() * 8000 + 1024);
-			int y = (int) (Math.random() * 620 + 30);
+			int x = (int) (Math.random() * 10000 + 1024);
+			int y = (int) (Math.random() * 610 + 30);
 
 			inimigo.add(new Inimigo(x, y));
 
@@ -104,7 +104,7 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 
 		}else {
 
-			ImageIcon fimJogo = new ImageIcon("res/fimdejogo1.png");
+			ImageIcon fimJogo = new ImageIcon("src/res/fimdejogo1.png");
 			graficos.drawImage(fimJogo.getImage(), 0, 0, null);
 
 		}
