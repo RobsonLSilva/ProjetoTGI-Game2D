@@ -1,6 +1,5 @@
 package inicio;
 
-
 import iniciojogo.Game;
 
 public class Main {
@@ -13,9 +12,8 @@ public class Main {
 			game.run();
 
 		} catch (Exception e) {
-
+			
 		}
 
 	}
-
 }

@@ -12,19 +12,12 @@ import javax.swing.JFrame;
 
 public class Game extends JFrame implements KeyListener {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 
 	BufferedImage backBuffer;
 	int janelaW = 1024;
 	int janelaH = 728;
 	int aux = 0;
-
-	// AQUI DECLARAMOS O NOSSO MENU COM:
-	// 4 itens, coordenadas x e y = 100, a ativo = true
-	// agora olhe esse método abaixo cenarios()
 
 	Menu menuPrincipal = new Menu(4, 100, 100, true);
 	ImageIcon fundo = new ImageIcon("src/res/menu01.png");
@@ -53,14 +46,15 @@ public class Game extends JFrame implements KeyListener {
 				aux = 1;
 
 			}
-			
-			//Sobre
+
+			// Sobre
 			if (menuPrincipal.cenario == 1) {
 				bbg.setColor(new Color(0, 0, 0));
 				bbg.fillRect(0, 0, janelaW, janelaH);
 				bbg.setColor(Color.WHITE);
 				bbg.drawString("Projeto TGI - UniDrummond.", 400, 180);
-				bbg.drawString("O jogo foi desenvolvido na linguagem java, no estilo nave, para a matéria de POO. ", 130, 220);
+				bbg.drawString("O jogo foi desenvolvido na linguagem java, no estilo nave, para a matéria de POO. ",
+						130, 220);
 				bbg.drawString(" ", 130, 240);
 				bbg.drawString("Coordenador do projeto: Profº Osvaldo Prosper - UniDrummond.", 130, 260);
 				bbg.drawString(" ", 130, 280);
@@ -69,38 +63,46 @@ public class Game extends JFrame implements KeyListener {
 				bbg.drawString("Aline", 275, 340);
 				bbg.drawString("Matheus", 275, 360);
 			}
-			
-			//Ajuda
+
+			// Ajuda
 			if (menuPrincipal.cenario == 2) {
 				bbg.setColor(new Color(0, 0, 0));
 				bbg.fillRect(0, 0, janelaW, janelaH);
 				bbg.setColor(Color.WHITE);
 				bbg.drawString("Você escolheu Ajuda", 100, 200);
 			}
-			
-			//Sair
+
+			// Sair
 			if (menuPrincipal.cenario == 3) {
 				System.exit(0);
 			}
 		}
 	}
-	
-	public void atualizar() {
-
-	}
 
 	public void desenharGraficos() {
-		Graphics g = getGraphics(); // ISSO JÁ ESTAVA AQUI
-		Graphics bbg = backBuffer.getGraphics();// ISSO TAMBÉM JÁ ESTAVA AQUI...
+		
+		Graphics g = getGraphics();
+		Graphics bbg = backBuffer.getGraphics();
 		bbg.drawImage(fundo.getImage(), 0, 0, this);
 
 		menuPrincipal.desenharMenu();// isso desenhará nosso menu
 		cenarios();// isso irá desenhar os cenários que escolhermos no menu
-		// agora observe o método inicializar()
 
-		// ==================================================================================
-		g.drawImage(backBuffer, 0, 0, this);// OBS: ISSO DEVE FICAR SEMPRE NO FINAL!
+		g.drawImage(backBuffer, 0, 0, this);
 	}
+
+	private static Runnable som = new Runnable() {
+		public void run() {
+			try {
+				
+				Som player = new Som();
+				player.play();
+
+			} catch (Exception e) {
+			}
+
+		}
+	};
 
 	public void inicializar() {
 
@@ -122,26 +124,24 @@ public class Game extends JFrame implements KeyListener {
 		menuPrincipal.itens[1] = "Sobre";
 		menuPrincipal.itens[2] = "Ajuda";
 		menuPrincipal.itens[3] = "Sair";
-		// aqui fazemos o método desenhaMenu() que fica lá em Menu.java
-		// desenhar no nosso buffer
-		// .. agora para finalizar observe o método de evento keyPressed() mais
-		// abaixo...
+
 		menuPrincipal.bbg = backBuffer.getGraphics();
+
 	}
-	
-	
 
 	public void run() {
 		inicializar();
+		new Thread(som).start();
 		while (true) {
-			atualizar();
 			desenharGraficos();
 		}
 	}
 
 	public void keyPressed(KeyEvent e) {
-		menuPrincipal.controlar(e);// esse controla o menu
-		menuPrincipal.voltarAoMenu(e);// esse faz voltar para o menu quando pressionarmos "Esc"
+		
+		menuPrincipal.controlar(e);
+		menuPrincipal.voltarAoMenu(e);
+		
 	}
 
 	public void keyReleased(KeyEvent e) {

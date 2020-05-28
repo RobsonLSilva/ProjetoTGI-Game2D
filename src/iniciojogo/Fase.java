@@ -108,9 +108,9 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 
 			}
 		} else if (emJogo == false && ganhou == false) {
-
+	
 			ImageIcon fimJogo = new ImageIcon("src/res/fimdejogo2.png");
-			graficos.drawImage(fimJogo.getImage(), 0, 0, this);
+			graficos.drawImage(fimJogo.getImage(), 0, 0, this);		
 
 		}
 		
