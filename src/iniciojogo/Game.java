@@ -18,7 +18,7 @@ public class Game extends JFrame implements KeyListener {
 	private static final long serialVersionUID = 1L;
 
 	BufferedImage backBuffer;
-	int janelaW = 1028;
+	int janelaW = 1024;
 	int janelaH = 728;
 	int aux = 0;
 
@@ -33,7 +33,7 @@ public class Game extends JFrame implements KeyListener {
 	public void cenarios() {
 
 		Graphics bbg = backBuffer.getGraphics();
-		bbg.setFont(new Font("Arial", Font.BOLD, 20));
+		bbg.setFont(new Font("Arial", Font.BOLD, 14));
 
 		if (aux == 0) {
 
@@ -53,27 +53,38 @@ public class Game extends JFrame implements KeyListener {
 				aux = 1;
 
 			}
-
+			
+			//Sobre
 			if (menuPrincipal.cenario == 1) {
-				bbg.setColor(new Color(100, 255, 100));
+				bbg.setColor(new Color(0, 0, 0));
 				bbg.fillRect(0, 0, janelaW, janelaH);
-				bbg.setColor(Color.BLACK);
-				bbg.drawString("Você escolheu Opções", 100, 200);
+				bbg.setColor(Color.WHITE);
+				bbg.drawString("Projeto TGI - UniDrummond.", 400, 180);
+				bbg.drawString("O jogo foi desenvolvido na linguagem java, no estilo nave, para a matéria de POO. ", 130, 220);
+				bbg.drawString(" ", 130, 240);
+				bbg.drawString("Coordenador do projeto: Profº Osvaldo Prosper - UniDrummond.", 130, 260);
+				bbg.drawString(" ", 130, 280);
+				bbg.drawString("Desenvolvedores:", 130, 300);
+				bbg.drawString("Robson Luiz", 275, 320);
+				bbg.drawString("Aline", 275, 340);
+				bbg.drawString("Matheus", 275, 360);
 			}
-
+			
+			//Ajuda
 			if (menuPrincipal.cenario == 2) {
-				bbg.setColor(new Color(100, 100, 255));
+				bbg.setColor(new Color(0, 0, 0));
 				bbg.fillRect(0, 0, janelaW, janelaH);
-				bbg.setColor(Color.BLACK);
+				bbg.setColor(Color.WHITE);
 				bbg.drawString("Você escolheu Ajuda", 100, 200);
 			}
-
+			
+			//Sair
 			if (menuPrincipal.cenario == 3) {
 				System.exit(0);
 			}
 		}
 	}
-
+	
 	public void atualizar() {
 
 	}
@@ -108,7 +119,7 @@ public class Game extends JFrame implements KeyListener {
 
 		// aqui definimos o texto de cada item do nosso menu
 		menuPrincipal.itens[0] = "Jogar";
-		menuPrincipal.itens[1] = "Opções";
+		menuPrincipal.itens[1] = "Sobre";
 		menuPrincipal.itens[2] = "Ajuda";
 		menuPrincipal.itens[3] = "Sair";
 		// aqui fazemos o método desenhaMenu() que fica lá em Menu.java
@@ -117,6 +128,8 @@ public class Game extends JFrame implements KeyListener {
 		// abaixo...
 		menuPrincipal.bbg = backBuffer.getGraphics();
 	}
+	
+	
 
 	public void run() {
 		inicializar();

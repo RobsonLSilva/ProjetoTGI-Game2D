@@ -30,6 +30,7 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 	private List<Estrelas> estrelas;
 
 	private boolean emJogo;
+	private boolean ganhou;
 
 	public Fase() {
 		setFocusable(true);
@@ -41,6 +42,7 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 		jogador = new Jogador();
 
 		emJogo = true;
+		ganhou = false;
 		inicializaInimigos();
 		inicializaEstrelas();
 
@@ -50,20 +52,19 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 	}
 
 	public void inicializaInimigos() {
-		int coordenadas[] = new int[50];
+		int coordenadas[] = new int[30];
 		inimigo = new ArrayList<Inimigo>();
 
 		for (int i = 0; i < coordenadas.length; i++) {
-			int x = (int) (Math.random() * 10000 + 1024);
+			int x = (int) (Math.random() * 6000 + 1024);
 			int y = (int) (Math.random() * 610 + 30);
-
 			inimigo.add(new Inimigo(x, y));
 
 		}
 	}
 
 	public void inicializaEstrelas() {
-		int coordenadas[] = new int[50];
+		int coordenadas[] = new int[30];
 		estrelas = new ArrayList<Estrelas>();
 
 		for (int i = 0; i < coordenadas.length; i++) {
@@ -76,7 +77,7 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 	public void paint(Graphics g) {
 
 		Graphics2D graficos = (Graphics2D) g;
-		graficos.drawImage(fundo, 0, 0, null);
+		graficos.drawImage(fundo, 0, 0, this);
 
 		if (emJogo) {
 
@@ -95,21 +96,36 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 
 			for (int o = 0; o < inimigo.size(); o++) {
 				Inimigo in = (Inimigo) inimigo.get(o);
-				// in.load();
 				graficos.drawImage(in.getImagem(), in.getX(), in.getY(), this);
 			}
 
 			graficos.setColor(Color.WHITE);
-			graficos.drawString("INIMIGOS: " + inimigo.size(), 10, 30);
+			graficos.drawString("INIMIGOS: " + inimigo.size(), 5, 15);
 
-		}else {
+			if (inimigo.size() <= 0) {
 
-			ImageIcon fimJogo = new ImageIcon("src/res/fimdejogo1.png");
-			graficos.drawImage(fimJogo.getImage(), 0, 0, null);
+				ganhou = true;
+
+			}
+		} else if (emJogo == false && ganhou == false) {
+
+			ImageIcon fimJogo = new ImageIcon("src/res/fimdejogo2.png");
+			graficos.drawImage(fimJogo.getImage(), 0, 0, this);
+
+		}
+		
+		if (ganhou == true) {
+			
+			emJogo = false;
+
+			ImageIcon ganhou = new ImageIcon("src/res/vitoria1.png");
+			graficos.drawImage(ganhou.getImage(), 0, 0, this);
 
 		}
 
 		g.dispose();
+
+		
 
 	}
 
@@ -201,14 +217,20 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
-				if (emJogo != true) {
-
+				if (emJogo == false || ganhou == true) {
+					
+				    ganhou = false;
 					emJogo = true;
 					jogador = new Jogador();
 					inicializaInimigos();
 					inicializaEstrelas();
 				}
 
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+				
+				System.exit(0);
 			}
 
 			jogador.keyPressed(e);

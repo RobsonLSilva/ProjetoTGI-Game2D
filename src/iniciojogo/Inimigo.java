@@ -14,7 +14,7 @@ public class Inimigo {
 	private int largura, altura;
 	private boolean isVisivel;
 	
-	private static final int LARGURA = 1200;
+	private static final int LARGURA = 1024;
 	private static int VELOCIDADE = 1;
 
 	private static int contador = 0;
@@ -25,14 +25,14 @@ public class Inimigo {
         this.y = y;
 
         ImageIcon referencia;
-
+        
         if (contador++ % 3 == 0) {
 
-            referencia = new ImageIcon("src/res/inimigo2.png");
+            referencia = new ImageIcon("src/res/inimigo1.gif");
 
-        } else {
+        } else{
 
-            referencia = new ImageIcon("src/res/inimigo1.png");
+            referencia = new ImageIcon("src/res/inimigo3.gif");
         }
 
         imagem = referencia.getImage();

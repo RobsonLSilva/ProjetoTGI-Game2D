@@ -107,6 +107,7 @@ public class Jogador {
 		if (codigo == KeyEvent.VK_RIGHT) {
 			dx = 1;
 		}
+		
 	}
 
 	public void keyReleased(KeyEvent tecla) {
