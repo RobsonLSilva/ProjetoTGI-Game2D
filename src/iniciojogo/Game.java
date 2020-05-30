@@ -77,15 +77,12 @@ public class Game extends JFrame implements KeyListener {
 				ImageIcon setas = new ImageIcon("res/setas.png");
 				ImageIcon espaco = new ImageIcon("res/barraEspaco.png");
 				ImageIcon esc = new ImageIcon("res/esc.png");
-				//ImageIcon baixo = new ImageIcon("res/baixo.png");
 				bbg.setFont(new Font("Arial", Font.BOLD, 18));
 				bbg.setColor(new Color(0, 0, 0));
 				bbg.fillRect(0, 0, janelaW, janelaH);
 				bbg.setColor(Color.WHITE);
 				bbg.drawString("Para mover nosso herois utilize as teclas: ", 50, 100);
 				bbg.drawString("Para atirar utilize a tecla: ", 600, 100);
-				//bbg.drawString("PARA TRAS ", 50, 250);
-				//bbg.drawString("PARA CIMA ", 50, 300);
 				bbg.drawString("Para sair a qualquer momento do jogo, precione a tecla: ", 230, 380);
 				bbg.drawImage(esc.getImage(), 480, 420, this);
 				bbg.drawImage(espaco.getImage(), 610, 150, this);
@@ -114,7 +111,7 @@ public class Game extends JFrame implements KeyListener {
 
 	public void inicializar() {
 
-		Som.play(0);
+		Som.play();
 
 		setTitle("Viking");
 		setSize(janelaW, janelaH);

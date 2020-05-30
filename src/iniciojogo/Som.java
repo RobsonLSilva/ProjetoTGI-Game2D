@@ -12,23 +12,16 @@ public class Som {
 
 	boolean playCompleted;
 
-	public static synchronized void play(int fileName) {
+	public static synchronized void play() {
 
-		final int MUSIC_N = 3;
-		final int BACK_GROUNG = 0;
-		final int GAMEOVER = 1;
+		final String music;
 
-
-		String[] address;
-		address = new String[MUSIC_N];
-
-		address[BACK_GROUNG] = "music/game.wav";
-		address[GAMEOVER] = "music/gameOver.wav";
+		music = "music/game.wav";
 
 		new Thread(new Runnable() {
 			public void run() {
 				try {
-					AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(address[fileName]));
+					AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(music));
 					AudioFormat format = audioStream.getFormat();
 					DataLine.Info info = new DataLine.Info(Clip.class, format);
 					Clip audioClip = (Clip) AudioSystem.getLine(info);
