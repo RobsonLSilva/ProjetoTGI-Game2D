@@ -22,20 +22,12 @@ public class Tiro {
 		this.y = y;
 		isVisivel = true;
 
-		ImageIcon referencia = new ImageIcon("src/res/tiroSimples.png");
-		imagem = referencia.getImage();
-		
-		this.largura = imagem.getWidth(null);
-		this.altura = imagem.getHeight(null);
-	}
-	
-	/*public void load() {
 		ImageIcon referencia = new ImageIcon("res/tiroSimples.png");
 		imagem = referencia.getImage();
 		
 		this.largura = imagem.getWidth(null);
 		this.altura = imagem.getHeight(null);
-	}*/
+	}
 	
 	public void update() {
 		this.x += VELOCIDADE;

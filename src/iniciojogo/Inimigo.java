@@ -28,11 +28,11 @@ public class Inimigo {
         
         if (contador++ % 3 == 0) {
 
-            referencia = new ImageIcon("src/res/inimigo1.gif");
+            referencia = new ImageIcon("res/inimigo1.gif");
 
         } else{
 
-            referencia = new ImageIcon("src/res/inimigo3.gif");
+            referencia = new ImageIcon("res/inimigo3.gif");
         }
 
         imagem = referencia.getImage();

@@ -19,7 +19,7 @@ public class Estrelas {
 		this.y = y;
 		isVisivel = true;
 
-		ImageIcon referencia = new ImageIcon("src/res/Stars.png");
+		ImageIcon referencia = new ImageIcon("res/Stars.png");
 		imagem = referencia.getImage();
 
 		this.largura = imagem.getWidth(null);

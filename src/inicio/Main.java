@@ -12,7 +12,7 @@ public class Main {
 			game.run();
 
 		} catch (Exception e) {
-			
+
 		}
 
 	}

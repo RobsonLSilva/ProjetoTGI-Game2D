@@ -20,7 +20,7 @@ public class Game extends JFrame implements KeyListener {
 	int aux = 0;
 
 	Menu menuPrincipal = new Menu(4, 100, 100, true);
-	ImageIcon fundo = new ImageIcon("src/res/menu01.png");
+	ImageIcon fundo = new ImageIcon("res/menu01.png");
 
 	@SuppressWarnings("rawtypes")
 	public void cenarios() {
@@ -49,27 +49,48 @@ public class Game extends JFrame implements KeyListener {
 
 			// Sobre
 			if (menuPrincipal.cenario == 1) {
+				
+				ImageIcon logo = new ImageIcon("res/logo.png");
+				bbg.setFont(new Font("Arial", Font.BOLD, 24));
 				bbg.setColor(new Color(0, 0, 0));
 				bbg.fillRect(0, 0, janelaW, janelaH);
 				bbg.setColor(Color.WHITE);
-				bbg.drawString("Projeto TGI - UniDrummond.", 400, 180);
-				bbg.drawString("O jogo foi desenvolvido na linguagem java, no estilo nave, para a matéria de POO. ",
-						130, 220);
-				bbg.drawString(" ", 130, 240);
-				bbg.drawString("Coordenador do projeto: Profº Osvaldo Prosper - UniDrummond.", 130, 260);
-				bbg.drawString(" ", 130, 280);
-				bbg.drawString("Desenvolvedores:", 130, 300);
-				bbg.drawString("Robson Luiz", 275, 320);
-				bbg.drawString("Aline", 275, 340);
-				bbg.drawString("Matheus", 275, 360);
+				bbg.drawString("Projeto TGI - UniDrummond.", 320, 130);
+				bbg.setFont(new Font("Arial", Font.BOLD, 18));
+				bbg.drawString("O jogo foi desenvolvido na linguagem java, no estilo nave, para a matéria de POO. ", 105, 220);
+				bbg.drawString("Coordenador do projeto: ", 105, 260);
+				bbg.setColor(Color.CYAN);
+				bbg.drawString("Prof. Osvaldo Prosper - UniDrummond.", 360, 260);
+				bbg.setColor(Color.WHITE);
+				bbg.drawString("Desenvolvedores: ", 105, 300);
+				bbg.setColor(Color.CYAN);
+				bbg.drawString("Robson Luiz", 295, 300);
+				bbg.drawString("Aline Magalhães", 295, 325);
+				bbg.drawString("Matheus Gonzaga", 295, 350);
+				bbg.drawImage(logo.getImage(), 400, 400, this);
+				bbg.setColor(Color.WHITE);
+				bbg.drawString("Retornar: Esc", 5, 720);
 			}
 
 			// Ajuda
 			if (menuPrincipal.cenario == 2) {
+				ImageIcon setas = new ImageIcon("res/setas.png");
+				ImageIcon espaco = new ImageIcon("res/barraEspaco.png");
+				ImageIcon esc = new ImageIcon("res/esc.png");
+				//ImageIcon baixo = new ImageIcon("res/baixo.png");
+				bbg.setFont(new Font("Arial", Font.BOLD, 18));
 				bbg.setColor(new Color(0, 0, 0));
 				bbg.fillRect(0, 0, janelaW, janelaH);
 				bbg.setColor(Color.WHITE);
-				bbg.drawString("Você escolheu Ajuda", 100, 200);
+				bbg.drawString("Para mover nosso herois utilize as teclas: ", 50, 100);
+				bbg.drawString("Para atirar utilize a tecla: ", 600, 100);
+				//bbg.drawString("PARA TRAS ", 50, 250);
+				//bbg.drawString("PARA CIMA ", 50, 300);
+				bbg.drawString("Para sair a qualquer momento do jogo, precione a tecla: ", 230, 380);
+				bbg.drawImage(esc.getImage(), 480, 420, this);
+				bbg.drawImage(espaco.getImage(), 610, 150, this);
+				bbg.drawImage(setas.getImage(), 150, 120, this);
+				
 			}
 
 			// Sair
@@ -80,31 +101,20 @@ public class Game extends JFrame implements KeyListener {
 	}
 
 	public void desenharGraficos() {
-		
+
 		Graphics g = getGraphics();
 		Graphics bbg = backBuffer.getGraphics();
 		bbg.drawImage(fundo.getImage(), 0, 0, this);
 
-		menuPrincipal.desenharMenu();// isso desenhará nosso menu
-		cenarios();// isso irá desenhar os cenários que escolhermos no menu
+		menuPrincipal.desenharMenu();
+		cenarios();
 
 		g.drawImage(backBuffer, 0, 0, this);
 	}
 
-	private static Runnable som = new Runnable() {
-		public void run() {
-			try {
-				
-				Som player = new Som();
-				player.play();
-
-			} catch (Exception e) {
-			}
-
-		}
-	};
-
 	public void inicializar() {
+
+		Som.play(0);
 
 		setTitle("Viking");
 		setSize(janelaW, janelaH);
@@ -116,10 +126,8 @@ public class Game extends JFrame implements KeyListener {
 
 		backBuffer = new BufferedImage(janelaW, janelaH, BufferedImage.TYPE_INT_RGB);
 
-		// AQUI ESTAMOS ADICIONANDO UM ESCUTADOR DE TECLAS
 		addKeyListener(this);
 
-		// aqui definimos o texto de cada item do nosso menu
 		menuPrincipal.itens[0] = "Jogar";
 		menuPrincipal.itens[1] = "Sobre";
 		menuPrincipal.itens[2] = "Ajuda";
@@ -131,17 +139,16 @@ public class Game extends JFrame implements KeyListener {
 
 	public void run() {
 		inicializar();
-		new Thread(som).start();
 		while (true) {
 			desenharGraficos();
 		}
 	}
 
 	public void keyPressed(KeyEvent e) {
-		
+
 		menuPrincipal.controlar(e);
 		menuPrincipal.voltarAoMenu(e);
-		
+
 	}
 
 	public void keyReleased(KeyEvent e) {

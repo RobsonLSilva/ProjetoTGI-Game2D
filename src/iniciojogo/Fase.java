@@ -37,7 +37,7 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 		setDoubleBuffered(true);
 		addKeyListener(new TecladoAdapter());
 
-		ImageIcon referencia = new ImageIcon("src/res/fundo01.png");
+		ImageIcon referencia = new ImageIcon("res/fundo01.png");
 		fundo = referencia.getImage();
 		jogador = new Jogador();
 
@@ -48,6 +48,7 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 
 		timer = new Timer(5, this);
 		timer.start();
+		
 
 	}
 
@@ -108,8 +109,8 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 
 			}
 		} else if (emJogo == false && ganhou == false) {
-	
-			ImageIcon fimJogo = new ImageIcon("src/res/fimdejogo2.png");
+			
+			ImageIcon fimJogo = new ImageIcon("res/fimdejogo2.png");
 			graficos.drawImage(fimJogo.getImage(), 0, 0, this);		
 
 		}
@@ -118,7 +119,7 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 			
 			emJogo = false;
 
-			ImageIcon ganhou = new ImageIcon("src/res/vitoria1.png");
+			ImageIcon ganhou = new ImageIcon("res/vitoria1.png");
 			graficos.drawImage(ganhou.getImage(), 0, 0, this);
 
 		}
@@ -128,6 +129,7 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 		
 
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -217,8 +219,8 @@ public class Fase<jogador> extends JPanel implements ActionListener {
 
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
-				if (emJogo == false || ganhou == true) {
-					
+				if (emJogo == false || ganhou == true) {					
+
 				    ganhou = false;
 					emJogo = true;
 					jogador = new Jogador();

@@ -23,7 +23,7 @@ public class Jogador {
 		//isVisivel = true;
 
 		tiros = new ArrayList<Tiro>();
-		ImageIcon referencia = new ImageIcon("src/res/jogador04.png");
+		ImageIcon referencia = new ImageIcon("res/jogador04.png");
 		imagem = referencia.getImage();
 		altura = imagem.getHeight(null);
 		largura = imagem.getHeight(null);
